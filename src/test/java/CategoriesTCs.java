@@ -1,68 +1,62 @@
-import Pages.CategoriesPages;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-import java.time.Duration;
+import DriverFactory.Driver;
+import Pages.HomePage;
+import org.testng.annotations.*;
 
 public class CategoriesTCs {
 
-    WebDriver driver ;
-    private CategoriesPages categoriesPage;
+    public ThreadLocal<Driver> driver;
+    private HomePage homePage;
 
     @BeforeMethod
-    public void setup() {
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get("https://practicesoftwaretesting.com");
-        driver.manage().window().maximize();
-
+    @Parameters(value = {"browserName"})
+    public void setup(@Optional("CHROME") String browserName) {
+        driver = new ThreadLocal<>();
+        driver.set(new Driver(browserName));
+        driver.get().browser().navigateToURL("https://practicesoftwaretesting.com/");
     }
 
     @Test(priority = 1)
     public void handTools() {
-        categoriesPage =new CategoriesPages(driver);
-        categoriesPage.CheckThatHandToolsPageIsLoadedSuccessfully();
-        categoriesPage.CheckThatUrlOfHandToolsPageIsCorrect();
-
+        new HomePage(driver.get()).CheckThatURLofHomePageIsCorrect()
+                .CheckThatHandToolsPageIsLoadedSuccessfully()
+                .CheckThatUrlOfHandToolsPageIsCorrect();
     }
 
     @Test(priority = 2)
     public void powerTools() {
-        categoriesPage =new CategoriesPages(driver);
-        categoriesPage.CheckThatPowerToolsPageIsLoadedSuccessfully();
-        categoriesPage.CheckThatUrlOfPowerToolsPageIsCorrect();
+        new HomePage(driver.get()).CheckThatURLofHomePageIsCorrect()
+                .CheckThatPowerToolsPageIsLoadedSuccessfully()
+                .CheckThatUrlOfPowerToolsPageIsCorrect();
 
     }
 
 
     @Test(priority = 3)
     public void other() {
-        categoriesPage =new CategoriesPages(driver);
-        categoriesPage.CheckThatOtherToolsPageIsLoadedSuccessfully();
-        categoriesPage.CheckThatUrlOfOtherToolsPageIsCorrect();
+        new HomePage(driver.get()).CheckThatURLofHomePageIsCorrect()
+                .CheckThatOtherToolsPageIsLoadedSuccessfully()
+                .CheckThatUrlOfOtherToolsPageIsCorrect();
     }
 
     @Test(priority = 4)
     public void specialTools() {
-        categoriesPage =new CategoriesPages(driver);
-        categoriesPage.CheckThatSpecialToolsPageIsLoadedSuccessfully();
-        categoriesPage.CheckThatUrlOfSpecialToolsPageIsCorrect();
+        new HomePage(driver.get()).CheckThatURLofHomePageIsCorrect()
+                .CheckThatSpecialToolsPageIsLoadedSuccessfully()
+                .CheckThatUrlOfSpecialToolsPageIsCorrect();;
 
     }
 
     @Test(priority = 5)
     public void rentals() {
-        categoriesPage =new CategoriesPages(driver);
-        categoriesPage.CheckThatRentalsToolsPageIsLoadedSuccessfully();
-        categoriesPage.CheckThatUrlOfRentalsToolsPageIsCorrect();
+        new HomePage(driver.get()).CheckThatURLofHomePageIsCorrect()
+                .CheckThatRentalsToolsPageIsLoadedSuccessfully()
+                .CheckThatUrlOfRentalsToolsPageIsCorrect();
 
     }
 
     @AfterMethod
     public void tearDown() throws InterruptedException {
         Thread.sleep(3000);
-        driver.quit();
+        driver.get().Quit();
     }
 }
