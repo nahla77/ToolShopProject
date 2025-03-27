@@ -50,16 +50,12 @@ public class ContactPage {
         WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(30));
         WebElement contactHeader = wait.until(ExpectedConditions.visibilityOfElementLocated(contactFormTitle));
         System.out.println("Actual text found: " + contactHeader.getText());
-        //Assert.assertEquals(driver.element().getTextOf(contactFormTitle), "Contact");
-        //Assert.assertTrue(driver.element().isDisplayed(contactFormTitle), "Error message not displayed");
-
-        //Assert.assertTrue(driver.browser().getCurrentURL().contains("/contact"));
+        
         return this;
     }
     public ContactPage checkThatThanksMessageIsDisplayedSuccessfully(){
         WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(30));
         WebElement successMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(ThanksMessage));
-//        System.out.println("تم العثور على الرسالة: " + successMessage.getText());
         Assert.assertTrue(driver.element().isDisplayed(ThanksMessage), "Thanks message not displayed");
 
         return this;
