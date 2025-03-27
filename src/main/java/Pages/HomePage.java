@@ -16,6 +16,7 @@ public class HomePage {
     By Other = (By.cssSelector("a[data-test='nav-other']"));
     By SpecialTools = (By.cssSelector("a[data-test='nav-special-tools']"));
     By Rentals = (By.cssSelector("a[data-test='nav-rentals']"));
+    By ContactLink = (By.xpath("//a[@href=\"/contact\"]"));
 
     /****************************************Assertion*******************************************/
 
@@ -23,6 +24,10 @@ public class HomePage {
 
         String url =driver.browser().getCurrentURL();
         Assert.assertEquals(url,"https://practicesoftwaretesting.com/");
+        return this;
+    }
+    public HomePage checkThatContactLinkShouldBeDisplayed() {
+        Assert.assertTrue(driver.element().isDisplayed(ContactLink));
         return this;
     }
 
@@ -54,6 +59,10 @@ public class HomePage {
         driver.element().click(Categories);
         driver.element().click(Rentals);
         return new RentalsPage(driver);
+    }
+    public ContactPage clickOnContactLink(){
+        driver.element().click(ContactLink);
+        return new ContactPage(driver);
     }
 
 
