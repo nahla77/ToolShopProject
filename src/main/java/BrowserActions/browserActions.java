@@ -1,8 +1,12 @@
 package BrowserActions;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+
+import java.util.List;
 
 public class browserActions {
 
@@ -73,5 +77,16 @@ public class browserActions {
     public browserActions deleteAllCookies() {
         driver.manage().deleteAllCookies();
         return this;
+    }
+
+    public void sleep(int i) {
+    }
+
+    public List<WebElement> findElements(By cardTitles) {
+        return List.of();
+    }
+
+    public WebDriver getDriver() {
+        return null;
     }
 }
