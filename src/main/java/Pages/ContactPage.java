@@ -45,12 +45,11 @@ public class ContactPage {
     }
 
     public ContactPage checkThatContactPageShouldBeLoadedSuccessfully() {
-        System.out.println("Current URL: " + driver.browser().getCurrentURL());
-        System.out.println("Actual text found: " + driver.element().getTextOf(contactFormTitle));
+        System.out.println("Current URL: " + driver.browser().getCurrentURL())
         WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(30));
         WebElement contactHeader = wait.until(ExpectedConditions.visibilityOfElementLocated(contactFormTitle));
-        System.out.println("Actual text found: " + contactHeader.getText());
-        
+        String actualText = contactHeader.getText();
+        System.out.println("Actual text found: " + actualText);
         return this;
     }
     public ContactPage checkThatThanksMessageIsDisplayedSuccessfully(){
