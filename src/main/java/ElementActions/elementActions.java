@@ -3,6 +3,8 @@ package ElementActions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.List;
+
 public class elementActions {
 
     private WebDriver driver;
@@ -19,16 +21,16 @@ public class elementActions {
         try {
             driver.findElement(locator).click();
         } catch (ElementClickInterceptedException | NoSuchElementException |
-        StaleElementReferenceException | TimeoutException exception){
+                 StaleElementReferenceException | TimeoutException exception) {
             ScrollToElement(locator);
             ClickUsingJavaScript(locator);
         }
         return this;
     }
 
-    public elementActions ClickUsingJavaScript(By locator){
-        System.out.println("click on"+ locator.toString()+ "Using JavaScript");
-        javascriptExecutor.executeScript("arguments[0].click();" ,driver.findElement(locator));
+    public elementActions ClickUsingJavaScript(By locator) {
+        System.out.println("click on " + locator.toString() + " Using JavaScript");
+        javascriptExecutor.executeScript("arguments[0].click();", driver.findElement(locator));
         return this;
     }
 
@@ -45,20 +47,20 @@ public class elementActions {
         return this;
     }
 
-    public elementActions ScrollToElement(By locator){
-        System.out.println("Scorlling to element"+locator.toString());
-        //new Actions(driver).scrollToElement(driver.findElement(locator)).build().perform();
+    public elementActions ScrollToElement(By locator) {
+        System.out.println("Scrolling to element " + locator.toString());
         javascriptExecutor.executeScript("arguments[0].scrollIntoView(true);", driver.findElement(locator));
         return this;
     }
+
     public elementActions selectByIndex(By locator, int index) {
-        System.out.println("Selecting Option " + index + "from dropdown: " + locator.toString());
+        System.out.println("Selecting Option " + index + " from dropdown: " + locator.toString());
         new Select(driver.findElement(locator)).selectByIndex(index);
         return this;
     }
 
     public elementActions selectByValue(By locator, String value) {
-        System.out.println("Selecting Value: " + value + "from dropdown: " + locator.toString());
+        System.out.println("Selecting Value: " + value + " from dropdown: " + locator.toString());
         new Select(driver.findElement(locator)).selectByValue(value);
         return this;
     }
@@ -69,17 +71,21 @@ public class elementActions {
     }
 
     public Boolean isDisplayed(By locator) {
-        System.out.println("Checking" + locator.toString().split(":", 2)[1] + " if Displayed");
+        System.out.println("Checking " + locator.toString().split(":", 2)[1] + " if Displayed");
         return driver.findElement(locator).isDisplayed();
     }
 
     public Boolean isSelected(By locator) {
-        System.out.println("Checking" + locator.toString().split(":", 2)[1] + " if Selected");
+        System.out.println("Checking " + locator.toString().split(":", 2)[1] + " if Selected");
         return driver.findElement(locator).isSelected();
     }
 
     public Boolean isClickable(By locator) {
-        System.out.println("Checking" + locator.toString().split(":", 2)[1] + " if Clickable");
+        System.out.println("Checking " + locator.toString().split(":", 2)[1] + " if Clickable");
         return driver.findElement(locator).isEnabled();
+    }
+
+    public List<WebElement> findElements(By allLinks) {
+        return driver.findElements(allLinks);
     }
 }

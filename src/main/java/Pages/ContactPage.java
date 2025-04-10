@@ -45,15 +45,16 @@ public class ContactPage {
     }
 
     public ContactPage checkThatContactPageShouldBeLoadedSuccessfully() {
-        System.out.println("Current URL: " + driver.browser().getCurrentURL())
-        WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(30));
+        System.out.println("Current URL: " + driver.browser().getCurrentURL());
+        System.out.println("Actual text found: " + driver.element().getTextOf(contactFormTitle));
+        WebDriverWait wait = new WebDriverWait(driver.get("https://practicesoftwaretesting.com/"), Duration.ofSeconds(30));
         WebElement contactHeader = wait.until(ExpectedConditions.visibilityOfElementLocated(contactFormTitle));
-        String actualText = contactHeader.getText();
-        System.out.println("Actual text found: " + actualText);
+        System.out.println("Actual text found: " + contactHeader.getText());
+
         return this;
     }
     public ContactPage checkThatThanksMessageIsDisplayedSuccessfully(){
-        WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(30));
+        WebDriverWait wait = new WebDriverWait(driver.get("https://practicesoftwaretesting.com/"), Duration.ofSeconds(30));
         WebElement successMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(ThanksMessage));
         Assert.assertTrue(driver.element().isDisplayed(ThanksMessage), "Thanks message not displayed");
 
@@ -71,21 +72,21 @@ public class ContactPage {
 
     /****************************************Actions*******************************************/
     public ContactPage fillInContactPageForm() {
-        driver.get().findElement(firstName).sendKeys("Layan");
-        driver.get().findElement(lastName).sendKeys("Aser");
-        driver.get().findElement(emailAddress).sendKeys("lele@gmail.com");
+        driver.get("https://practicesoftwaretesting.com/").findElement(firstName).sendKeys("Layan");
+        driver.get("https://practicesoftwaretesting.com/").findElement(lastName).sendKeys("Aser");
+        driver.get("https://practicesoftwaretesting.com/").findElement(emailAddress).sendKeys("lele@gmail.com");
         driver.element().selectByValue(Subject,"customer-service");
-        driver.get().findElement(message).sendKeys("welcome in tool shop demo automation testing HELLO IN JAVA HELLO IN ");
-        driver.get().findElement(attachment).sendKeys(filePath);
+        driver.get("https://practicesoftwaretesting.com/").findElement(message).sendKeys("welcome in tool shop demo automation testing HELLO IN JAVA HELLO IN ");
+        driver.get("https://practicesoftwaretesting.com/").findElement(attachment).sendKeys(filePath);
         return this;
     }
     public ContactPage fillInContactFormWithInValidData(){
-        driver.get().findElement(firstName).sendKeys("");
-        driver.get().findElement(lastName).sendKeys("");
-        driver.get().findElement(emailAddress).sendKeys("invalid-email");
+        driver.get("https://practicesoftwaretesting.com/").findElement(firstName).sendKeys("");
+        driver.get("https://practicesoftwaretesting.com/").findElement(lastName).sendKeys("");
+        driver.get("https://practicesoftwaretesting.com/").findElement(emailAddress).sendKeys("invalid-email");
         //driver.element().selectByValue(Subject,"");
-        driver.get().findElement(message).sendKeys("This is a test message. ");
-        driver.get().findElement(attachment).sendKeys(InvalidFilePath);
+        driver.get("https://practicesoftwaretesting.com/").findElement(message).sendKeys("This is a test message. ");
+        driver.get("https://practicesoftwaretesting.com/").findElement(attachment).sendKeys(InvalidFilePath);
         return this;
 
     }

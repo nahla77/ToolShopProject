@@ -63,7 +63,6 @@ public class browserActions {
         return this;
     }
 
-
     public browserActions deleteCookie(Cookie cookie) {
         driver.manage().deleteCookie(cookie);
         return this;
@@ -74,19 +73,12 @@ public class browserActions {
         return this;
     }
 
-    public browserActions deleteAllCookies() {
-        driver.manage().deleteAllCookies();
-        return this;
+    /**************************** Implementing missing methods ***************************/
+
+    public void navigate() {
     }
 
-    public void sleep(int i) {
-    }
-
-    public List<WebElement> findElements(By cardTitles) {
-        return List.of();
-    }
-
-    public WebDriver getDriver() {
-        return null;
+    public List<WebElement> findElements(By a) {
+        return driver.findElements(a);
     }
 }
