@@ -64,6 +64,32 @@ public class HomePage {
         driver.element().click(ContactLink);
         return new ContactPage(driver);
     }
+    public HomePage verifyAllLinksAreWorking() {
+        List<WebElement> allLinks = driver.browser().findElements(By.tagName("a"));
+
+        for (WebElement link : allLinks) {
+            String url = link.getAttribute("href");
+
+            if (url == null || url.isEmpty() || url.startsWith("javascript")) {
+
+                try {
+                    HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+                    connection.setRequestMethod("HEAD");
+                    connection.connect();
+
+                    int responseCode = connection.getResponseCode();
+                    Assert.assertTrue(responseCode < 400, "Broken link found: " + url + " (code: " + responseCode + ")");
+
+                } catch (Exception e) {
+                    Assert.fail("Exception while checking link: " + url + " → " + e.getMessage());
+                }
+            }
+
+            System.out.println(" All links are valid.");
+            return this;
+        }
+        return null;
+    }
 
 
 }
