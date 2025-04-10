@@ -15,10 +15,6 @@ public class Driver {
         this.driver.get().manage().window().maximize();
 
     }
-
-
-
-
     private DriverAbstract getDriver(String driver){
         switch (driver.toUpperCase()){
             case "CHROME":{
@@ -36,7 +32,7 @@ public class Driver {
         }
     }
 
-    public WebDriver get(String url){
+    public WebDriver get(){
         return this.driver.get();
     }
 

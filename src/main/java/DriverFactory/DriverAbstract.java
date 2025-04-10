@@ -4,10 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 public abstract class DriverAbstract {
 
-        protected WebDriver driver;
+    protected WebDriver driver;
 
-    public WebDriver StartDriver() {
-        return null;
-    }
+    public abstract WebDriver StartDriver();
 }
-

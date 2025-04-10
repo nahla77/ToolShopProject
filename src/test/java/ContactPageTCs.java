@@ -1,7 +1,7 @@
 import DriverFactory.Driver;
+import Pages.ContactPage;
 import Pages.HomePage;
 import org.testng.annotations.*;
-import org.testng.annotations.AfterMethod;
 
 public class ContactPageTCs {
     public ThreadLocal<Driver> driver;
