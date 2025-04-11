@@ -55,6 +55,13 @@ public class LanguageTCs {
                 .selectLanguage(TR_options)
                 .assertSortLabelTextIs("Sırala");
     }
+    @Test
+    public void testFrenchLanguagePersistsAfterRefresh() {
+        languageTest
+                .clickLanguageDropdown()
+                .selectLanguage(FR_options)
+                .verifyLanguagePersistsAfterRefresh("Trier");
+    }
 
 
     @AfterMethod
