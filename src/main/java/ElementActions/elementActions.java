@@ -16,7 +16,7 @@ public class elementActions {
         this.driver = driver;
         javascriptExecutor = (JavascriptExecutor) this.driver;
     }
-
+//update
     public elementActions click(By locator) {
         System.out.println("Click on: " + locator.toString());
 
@@ -67,7 +67,7 @@ public class elementActions {
         new Select(driver.findElement(locator)).selectByValue(value);
         return this;
     }
-
+//update
     public String getTextOf(By locator) {
         System.out.println("Getting text from locator: " + locator.toString());
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
