@@ -1,7 +1,11 @@
 package ElementActions;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class elementActions {
 
@@ -17,9 +21,10 @@ public class elementActions {
         System.out.println("Click on: " + locator.toString());
 
         try {
-            driver.findElement(locator).click();
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
         } catch (ElementClickInterceptedException | NoSuchElementException |
-        StaleElementReferenceException | TimeoutException exception){
+                 StaleElementReferenceException | TimeoutException exception) {
             ScrollToElement(locator);
             ClickUsingJavaScript(locator);
         }
@@ -65,8 +70,10 @@ public class elementActions {
 
     public String getTextOf(By locator) {
         System.out.println("Getting text from locator: " + locator.toString());
-        return driver.findElement(locator).getText();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).getText();
     }
+
 
     public Boolean isDisplayed(By locator) {
         System.out.println("Checking" + locator.toString().split(":", 2)[1] + " if Displayed");

@@ -27,6 +27,7 @@ public class HomePageTCs {
         homePage.verifyAllLinksAreWorking();
     }
 
+
     @AfterMethod
     public void tearDown() throws InterruptedException {
         Thread.sleep(3000);
