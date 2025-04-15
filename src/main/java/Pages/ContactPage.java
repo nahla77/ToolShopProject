@@ -75,7 +75,11 @@ public class ContactPage {
     public ContactPage fillInContactPageForm() {
         driver.get().findElement(firstName).sendKeys("Layan");
         driver.get().findElement(lastName).sendKeys("Aser");
-        driver.get().findElement(emailAddress).sendKeys("lele@gmail.com");
+        //randomEmail
+        String randomEmail = "user" + System.currentTimeMillis() + "@example.com";
+        System.out.println("Using email: " + randomEmail);
+        driver.get().findElement(emailAddress).sendKeys(randomEmail);
+        //driver.get().findElement(emailAddress).sendKeys("lele@gmail.com");
         driver.element().selectByValue(Subject,"customer-service");
         driver.get().findElement(message).sendKeys("welcome in tool shop demo automation testing HELLO IN JAVA HELLO IN ");
         driver.get().findElement(attachment).sendKeys(filePath);
