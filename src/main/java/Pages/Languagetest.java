@@ -10,10 +10,10 @@ import org.testng.Assert;
 
 import java.time.Duration;
 
-public class LanguageTest {
+public class Languagetest {
     private Driver driver;
 
-    public LanguageTest(Driver driver) {
+    public Languagetest(Driver driver) {
         this.driver = driver;
     }
 
@@ -32,7 +32,7 @@ public class LanguageTest {
     /****************************************Actions*******************************************/
     @Step("clickLanguageDropdown")
 
-    public LanguageTest clickLanguageDropdown() {
+    public Languagetest clickLanguageDropdown() {
         driver.element().click(languageDropdown);
         return this;
     }
@@ -54,7 +54,7 @@ public class LanguageTest {
 
     //Assertion on word "sort"
     @Step("assertSortLabelTextIs")
-    public LanguageTest assertSortLabelTextIs(String expectedText) {
+    public Languagetest assertSortLabelTextIs(String expectedText) {
         WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(10));
 
         // استنى لحد ما النص يتغير للي إحنا عايزينه
@@ -68,7 +68,7 @@ public class LanguageTest {
     }
 
     @Step("verifyLanguagePersistsAfterRefresh")
-    public LanguageTest verifyLanguagePersistsAfterRefresh(String expectedText) {
+    public Languagetest verifyLanguagePersistsAfterRefresh(String expectedText) {
         WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(SortText));
         String beforeRefresh = getSortText();
