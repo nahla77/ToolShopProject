@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import Pages.HomePage;
 import utilities.PropertiesManager;
 
-public class HomePageTCs {
+public class HomePageTest {
 
     public ThreadLocal<Driver> driver;
     private HomePage homePage;
