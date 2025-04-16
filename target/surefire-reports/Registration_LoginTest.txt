@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: Registration_LoginTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 42.61 s -- in Registration_LoginTest
