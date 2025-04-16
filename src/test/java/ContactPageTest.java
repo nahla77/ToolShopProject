@@ -4,7 +4,7 @@ import Pages.HomePage;
 import org.testng.annotations.*;
 import utilities.PropertiesManager;
 
-public class ContactPageTCs {
+public class ContactPageTest {
     public ThreadLocal<Driver> driver;
 
     @BeforeMethod
