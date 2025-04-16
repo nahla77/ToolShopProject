@@ -60,9 +60,9 @@ public class HomePage {
         try {
             wait.until(ExpectedConditions.invisibilityOfElementLocated(
                     By.xpath("//div[contains(@class,'toast') or contains(@class,'overlay')]")));
-            System.out.println("✅ Toast أو Overlay اختفى");
+            System.out.println("Toast أو Overlay اختفى");
         } catch (Exception e) {
-            System.out.println("⚠️ لم يظهر Toast أو Overlay");
+            System.out.println("لم يظهر Toast أو Overlay");
         }
 
         // 2. انتظار العنصر يكون ظاهر وقابل للضغط
@@ -76,11 +76,11 @@ public class HomePage {
         try {
             cartIcon.click();
         } catch (ElementClickInterceptedException e) {
-            System.out.println("⚠️ الزر متغطي، هيتم استخدام JavaScript للضغط.");
+            System.out.println("الزر متغطي، هيتم استخدام JavaScript للضغط.");
             ((JavascriptExecutor) driver.get()).executeScript("arguments[0].click();", cartIcon);
         }
 
-        System.out.println("🛒 تم الضغط على أيقونة السلة");
+        System.out.println("تم الضغط على أيقونة السلة");
 
         return new ShoppingCart(driver);
     }
@@ -169,14 +169,14 @@ public class HomePage {
 //                    connection.connect();
 //
 //                    int responseCode = connection.getResponseCode();
-//                    Assert.assertTrue(responseCode < 400, "❌ Broken link found: " + url + " (code: " + responseCode + ")");
+//                    Assert.assertTrue(responseCode < 400, " Broken link found: " + url + " (code: " + responseCode + ")");
 //                } catch (Exception e) {
-//                    Assert.fail("⚠️ Exception while checking link: " + url + " → " + e.getMessage());
+//                    Assert.fail(" Exception while checking link: " + url + " → " + e.getMessage());
 //                }
 //            }
 //        }
 //
-//        System.out.println("✅ All links are valid.");
+//        System.out.println(" All links are valid.");
 //        return this;
 //
 //    }
