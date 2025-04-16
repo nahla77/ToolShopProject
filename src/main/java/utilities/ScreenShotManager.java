@@ -14,7 +14,7 @@ public class ScreenShotManager {
 
     static String screenshotsDirectoryPath = "./screenshots";
 
-    public static String captureScreenshot(WebDriver driver, String screenshotName) {
+    public static String CaptureScreenshot(WebDriver driver, String screenshotName) {
         Path destination = Paths.get(screenshotsDirectoryPath, screenshotName + ".jpg");
 
         byte[] byteArray = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
