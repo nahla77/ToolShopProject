@@ -72,9 +72,9 @@ public class FiltersPage {
     public FiltersPage assertNoResultsAreShown() {
         List<WebElement> products = driver.get().findElements(By.cssSelector(".product-name")); // أو الكلاس اللي بيظهر فيه اسم المنتجات
 
-        System.out.println("🔍 Found " + products.size() + " item(s) after filtering.");
+        System.out.println(" Found " + products.size() + " item(s) after filtering.");
 
-        Assert.assertEquals(products.size(), 0, "❌ Expected no results, but some products appeared.");
+        Assert.assertEquals(products.size(), 0, " Expected no results, but some products appeared.");
 
         return this;
     }
