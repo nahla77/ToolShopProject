@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 import utilities.PropertiesManager;
 
-public class FiltersPageTCs {
+public class FiltersPageTest {
 
     public ThreadLocal<Driver> driver;
     private FiltersPage filtersPage;
