@@ -49,7 +49,7 @@ public String getSortText() {
 //Assertion on word "sort"
 public LanguageTest assertSortLabelTextIs(String expectedText) {
         String actual = getSortText(); // بيجيب النص من h4.grid-title
-        Assert.assertEquals(actual.trim(), expectedText, "❌ Sort label text is not as expected");
+        Assert.assertEquals(actual.trim(), expectedText, " Sort label text is not as expected");
         return this;
     }
 public LanguageTest verifyLanguagePersistsAfterRefresh(String expectedText) {
