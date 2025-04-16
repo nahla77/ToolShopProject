@@ -20,44 +20,44 @@ public class LanguageTest {
 
     @Test
     public void testSwitchToGerman(){
-        new LanguageTest(driver.get()).clickLanguageDropdown()
+        new Languagetest(driver.get()).clickLanguageDropdown()
                 .selectLanguage(DN_options)
                 .assertSortLabelTextIs("Sortieren");
     }
     @Test
     public void testSwitchToEnglish(){
-        new LanguageTest(driver.get()).clickLanguageDropdown()
+        new Languagetest(driver.get()).clickLanguageDropdown()
                 .selectLanguage(EN_options)
                 .assertSortLabelTextIs("Sort");
     }
     @Test
     public void testSwitchToSpanish(){
-        new LanguageTest(driver.get()).clickLanguageDropdown()
+        new Languagetest(driver.get()).clickLanguageDropdown()
                 .selectLanguage(ES_options)
                 .assertSortLabelTextIs("Ordenar");
     }
     @Test
     public void testSwitchToFrench(){
-        new LanguageTest(driver.get()).clickLanguageDropdown()
+        new Languagetest(driver.get()).clickLanguageDropdown()
                 .selectLanguage(FR_options)
                 .assertSortLabelTextIs("Trier");
     }
     @Test
     public void testSwitchToDutch() {
-        new LanguageTest(driver.get())
+        new Languagetest(driver.get())
                 .clickLanguageDropdown()
                 .selectLanguage(NL_options)
                 .assertSortLabelTextIs("Sorteren");
     }
     @Test
     public void testSwitchToTurkish(){
-        new LanguageTest(driver.get()).clickLanguageDropdown()
+        new Languagetest(driver.get()).clickLanguageDropdown()
                 .selectLanguage(TR_options)
                 .assertSortLabelTextIs("Sırala");
     }
     @Test
     public void testFrenchLanguagePersistsAfterRefresh() {
-        new LanguageTest(driver.get())
+        new Languagetest(driver.get())
                 .clickLanguageDropdown()
                 .selectLanguage(FR_options)
                 .verifyLanguagePersistsAfterRefresh("Trier");
