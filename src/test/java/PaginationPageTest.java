@@ -3,7 +3,7 @@ import Pages.PaginationPage;
 import org.testng.annotations.*;
 import utilities.PropertiesManager;
 
-public class PaginationPageTCs {
+public class PaginationPageTest {
     public ThreadLocal<Driver> driver;
     private PaginationPage paginationPage;
 
