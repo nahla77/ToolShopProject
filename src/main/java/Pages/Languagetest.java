@@ -38,7 +38,7 @@ public class Languagetest {
     }
 
     @Step("selectLanguage")
-    public LanguageTest selectLanguage(By languageOption) {
+    public Languagetest selectLanguage(By languageOption) {
         driver.element().click(languageOption);
         return this;
     }
