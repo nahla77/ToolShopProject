@@ -57,7 +57,7 @@ public class checkoutRegisterPage {
             wait.until(ExpectedConditions.invisibilityOfElementLocated(
                     By.xpath("//div[contains(@class,'toast-message') or contains(@class,'overlay')]")));
         } catch (Exception e) {
-            System.out.println("⚠️ لم يظهر Overlay أو Toast.");
+            System.out.println("لم يظهر Overlay أو Toast.");
         }
 
         // انتظار الزر يكون قابل للضغط
@@ -70,7 +70,7 @@ public class checkoutRegisterPage {
         // الضغط
         registerBtn.click();
 
-        System.out.println("✅ تم الضغط على زر التسجيل بنجاح");
+        System.out.println(" تم الضغط على زر التسجيل بنجاح");
 
         return new checkoutLoginPage(driver);
     }
