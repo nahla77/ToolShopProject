@@ -7,7 +7,7 @@ import utilities.PropertiesManager;
 
 import static Pages.LanguageTest.*;
 
-public class LanguageTCs {
+public class LanguageTest {
     public ThreadLocal<Driver> driver;
      private LanguageTest languageTest;
 
