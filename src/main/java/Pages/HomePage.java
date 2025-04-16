@@ -66,48 +66,12 @@ public class HomePage {
         WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(30));
       wait.until(ExpectedConditions.visibilityOfElementLocated(ShopCartButton));
 driver.element().click(ShopCartButton);
-//        WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(3));
-//        By cartIconLocator = By.xpath("//a[@data-test='nav-cart']");
-//
-//        // 1. انتظار اختفاء أي توست أو overlay بيغطي العنصر
-//        try {
-//            wait.until(ExpectedConditions.invisibilityOfElementLocated(
-//                    By.xpath("//div[contains(@class,'toast') or contains(@class,'overlay')]")));
-//            System.out.println("✅ Toast أو Overlay اختفى");
-//        } catch (Exception e) {
-//            System.out.println("⚠️ لم يظهر Toast أو Overlay");
-//        }
-//
-//        // 2. انتظار العنصر يكون ظاهر وقابل للضغط
-//        WebElement cartIcon = wait.until(ExpectedConditions.presenceOfElementLocated(cartIconLocator));
-//        wait.until(ExpectedConditions.elementToBeClickable(cartIconLocator));
-//
-//        // 3. Scroll إليه للتأكد من أنه داخل الشاشة
-//        ((JavascriptExecutor) driver.get()).executeScript("arguments[0].scrollIntoView(true);", cartIcon);
-//
-//        // 4. حاول تضغط بشكل طبيعي، ولو فشل جرب JavaScript click
-//        try {
-//            cartIcon.click();
-//        } catch (ElementClickInterceptedException e) {
-//            System.out.println("⚠️ الزر متغطي، هيتم استخدام JavaScript للضغط.");
-//            ((JavascriptExecutor) driver.get()).executeScript("arguments[0].click();", cartIcon);
-//        }
-//
-//        System.out.println("🛒 تم الضغط على أيقونة السلة");
 
         return new ShoppingCart(driver);
     }
     @Step("ClickOnAddToCartButtonAction")
     public HomePage ClickOnAddToCartButtonAction() {
        driver.element().click(AddToCartButton);
-//        WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(30));
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(addToCartBtn));
-//        wait.until(ExpectedConditions.elementToBeClickable(addToCartBtn));
-//
-//        System.out.println("Scorlling to element" + addToCartBtn);
-//        ((JavascriptExecutor) driver.get()).executeScript("arguments[0].scrollIntoView(true);", driver.get().findElement(addToCartBtn));
-//
-//        driver.get().findElement(addToCartBtn).click();
 
         return this;
     }
@@ -176,28 +140,6 @@ driver.element().click(ShopCartButton);
         }
         return null;
     }
-//    public HomePage verifyAllLinksAreWorkingWell() {
-//        List<WebElement> allLinks = driver.browser().findElements(By.tagName("a"));
-//        for (WebElement link : allLinks) {
-//            String url = link.getAttribute("href");
-//
-//            if (url != null && !url.isEmpty() && !url.startsWith("javascript")) {
-//                try {
-//                    HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
-//                    connection.setRequestMethod("HEAD");
-//                    connection.connect();
-//
-//                    int responseCode = connection.getResponseCode();
-//                    Assert.assertTrue(responseCode < 400, "❌ Broken link found: " + url + " (code: " + responseCode + ")");
-//                } catch (Exception e) {
-//                    Assert.fail("⚠️ Exception while checking link: " + url + " → " + e.getMessage());
-//                }
-//            }
-//        }
-//
-//        System.out.println("✅ All links are valid.");
-//        return this;
-//
-//    }
+
 
 }
