@@ -1,6 +1,7 @@
 package Pages;
 
 import DriverFactory.Driver;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -18,6 +19,7 @@ public class CheckoutBillingAddressPage {
 
     }
     /*****************************Actions********************/
+    @Step("fillInCheckoutBillingAddressPage")
     public CheckoutBillingAddressPage fillInCheckoutBillingAddressPage() {
         driver.get().findElement(BillingAddressStreet).sendKeys("15s");
         driver.get().findElement(BillingAddressCity).sendKeys("Alex");
@@ -27,6 +29,7 @@ public class CheckoutBillingAddressPage {
 
         return this;
     }
+    @Step("clickOnProceedThirdButton")
     public ConfirmationPaymentPage clickOnProceedThirdButton()
     {
         driver.element().click(ProceedThirdButton);

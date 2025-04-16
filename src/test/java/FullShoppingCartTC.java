@@ -3,6 +3,7 @@ import Pages.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
+import utilities.PropertiesManager;
 
 import java.time.Duration;
 
@@ -10,12 +11,12 @@ public class FullShoppingCartTC {
     public ThreadLocal<Driver> driver;
 
     @BeforeMethod
-    @Parameters(value = {"browserName"})
-    public void setup(@Optional("CHROME") String browserName) {
+    public void setup() {
         driver = new ThreadLocal<>();
-        driver.set(new Driver(browserName));
-        driver.get().browser().navigateToURL("https://practicesoftwaretesting.com/");
+        PropertiesManager.initializeProperties();
+        driver.set(new Driver());
     }
+
     @Test
     public void demoTest()
     {
@@ -34,6 +35,7 @@ public class FullShoppingCartTC {
                 .fillInPaymentField().clickOnConfirmButton().CheckThatPaymentSuccessfulMsgShouldBeDisplayed();
 
     }
+
     @AfterMethod
     public void tearDown() throws InterruptedException {
         Thread.sleep(3000);

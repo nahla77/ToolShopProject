@@ -2,16 +2,16 @@ import DriverFactory.Driver;
 import Pages.ContactPage;
 import Pages.HomePage;
 import org.testng.annotations.*;
+import utilities.PropertiesManager;
 
 public class ContactPageTCs {
     public ThreadLocal<Driver> driver;
 
     @BeforeMethod
-    @Parameters(value = {"browserName"})
-    public void setup(@Optional("CHROME") String browserName) {
+    public void setup() {
         driver = new ThreadLocal<>();
-        driver.set(new Driver(browserName));
-        driver.get().browser().navigateToURL("https://practicesoftwaretesting.com/");
+        PropertiesManager.initializeProperties();
+        driver.set(new Driver());
     }
 
     @Test(priority = 1)

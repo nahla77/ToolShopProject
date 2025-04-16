@@ -1,6 +1,7 @@
 package Pages;
 
 import DriverFactory.Driver;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
@@ -27,23 +28,27 @@ public class HomePage {
     By SpecialTools = (By.cssSelector("a[data-test='nav-special-tools']"));
     By Rentals = (By.cssSelector("a[data-test='nav-rentals']"));
     By ContactLink = (By.xpath("//a[@href=\"/contact\"]"));
-    By clickOnShoppingCartIcon = By.xpath("//a[@data-test='nav-cart']");
+    By AddToCartButton = By.id("btn-add-to-cart");
     By clickOnCombinationPliers = By.xpath("//img[@alt='Combination Pliers']");
-    By ClickOnAddToCartButton= By.xpath("//button[@data-test='add-to-cart']");
-    /****************************************Assertion*******************************************/
+    By ShopCartButton=By.id("lblCartCount");
+    By SigninLink = By.xpath("//a[@href=\"/auth/login\"]");
 
+    /****************************************Assertion*******************************************/
+    @Step("CheckThatURLofHomePageIsCorrect")
     public HomePage CheckThatURLofHomePageIsCorrect(){
 
         String url =driver.browser().getCurrentURL();
         Assert.assertEquals(url,"https://practicesoftwaretesting.com/");
         return this;
     }
+    @Step("checkThatContactLinkShouldBeDisplayed")
     public HomePage checkThatContactLinkShouldBeDisplayed() {
         Assert.assertTrue(driver.element().isDisplayed(ContactLink));
         return this;
     }
 
     /**********************Actions**************************************************************/
+    @Step("clickOnCombinationPliersIcon")
     public HomePage clickOnCombinationPliersIcon() {
         new WebDriverWait(driver.get(), Duration.ofSeconds(10))
                 .until(ExpectedConditions.elementToBeClickable(clickOnCombinationPliers))
@@ -51,86 +56,100 @@ public class HomePage {
 
         return new HomePage(driver);
     }
-
+    @Step("ClickOnSigninLink")
+    public RegistrationPage ClickOnSigninLink(){
+        driver.element().click(SigninLink);
+        return new RegistrationPage(driver);
+    }
+    @Step("clickOnShoppingCartIconAction")
     public ShoppingCart clickOnShoppingCartIconAction() {
-        WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(20));
-        By cartIconLocator = By.xpath("//a[@data-test='nav-cart']");
-
-        // 1. انتظار اختفاء أي توست أو overlay بيغطي العنصر
-        try {
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(
-                    By.xpath("//div[contains(@class,'toast') or contains(@class,'overlay')]")));
-            System.out.println("Toast أو Overlay اختفى");
-        } catch (Exception e) {
-            System.out.println("لم يظهر Toast أو Overlay");
-        }
-
-        // 2. انتظار العنصر يكون ظاهر وقابل للضغط
-        WebElement cartIcon = wait.until(ExpectedConditions.presenceOfElementLocated(cartIconLocator));
-        wait.until(ExpectedConditions.elementToBeClickable(cartIconLocator));
-
-        // 3. Scroll إليه للتأكد من أنه داخل الشاشة
-        ((JavascriptExecutor) driver.get()).executeScript("arguments[0].scrollIntoView(true);", cartIcon);
-
-        // 4. حاول تضغط بشكل طبيعي، ولو فشل جرب JavaScript click
-        try {
-            cartIcon.click();
-        } catch (ElementClickInterceptedException e) {
-            System.out.println("الزر متغطي، هيتم استخدام JavaScript للضغط.");
-            ((JavascriptExecutor) driver.get()).executeScript("arguments[0].click();", cartIcon);
-        }
-
-        System.out.println("تم الضغط على أيقونة السلة");
+        WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(30));
+      wait.until(ExpectedConditions.visibilityOfElementLocated(ShopCartButton));
+driver.element().click(ShopCartButton);
+//        WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(3));
+//        By cartIconLocator = By.xpath("//a[@data-test='nav-cart']");
+//
+//        // 1. انتظار اختفاء أي توست أو overlay بيغطي العنصر
+//        try {
+//            wait.until(ExpectedConditions.invisibilityOfElementLocated(
+//                    By.xpath("//div[contains(@class,'toast') or contains(@class,'overlay')]")));
+//            System.out.println("✅ Toast أو Overlay اختفى");
+//        } catch (Exception e) {
+//            System.out.println("⚠️ لم يظهر Toast أو Overlay");
+//        }
+//
+//        // 2. انتظار العنصر يكون ظاهر وقابل للضغط
+//        WebElement cartIcon = wait.until(ExpectedConditions.presenceOfElementLocated(cartIconLocator));
+//        wait.until(ExpectedConditions.elementToBeClickable(cartIconLocator));
+//
+//        // 3. Scroll إليه للتأكد من أنه داخل الشاشة
+//        ((JavascriptExecutor) driver.get()).executeScript("arguments[0].scrollIntoView(true);", cartIcon);
+//
+//        // 4. حاول تضغط بشكل طبيعي، ولو فشل جرب JavaScript click
+//        try {
+//            cartIcon.click();
+//        } catch (ElementClickInterceptedException e) {
+//            System.out.println("⚠️ الزر متغطي، هيتم استخدام JavaScript للضغط.");
+//            ((JavascriptExecutor) driver.get()).executeScript("arguments[0].click();", cartIcon);
+//        }
+//
+//        System.out.println("🛒 تم الضغط على أيقونة السلة");
 
         return new ShoppingCart(driver);
     }
+    @Step("ClickOnAddToCartButtonAction")
     public HomePage ClickOnAddToCartButtonAction() {
-        By addToCartBtn = By.xpath("//button[@data-test='add-to-cart']");
-
-        WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(30));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(addToCartBtn));
-        wait.until(ExpectedConditions.elementToBeClickable(addToCartBtn));
-
-        System.out.println("Scorlling to element" + addToCartBtn);
-        ((JavascriptExecutor) driver.get()).executeScript("arguments[0].scrollIntoView(true);", driver.get().findElement(addToCartBtn));
-
-        driver.get().findElement(addToCartBtn).click();
+       driver.element().click(AddToCartButton);
+//        WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(30));
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(addToCartBtn));
+//        wait.until(ExpectedConditions.elementToBeClickable(addToCartBtn));
+//
+//        System.out.println("Scorlling to element" + addToCartBtn);
+//        ((JavascriptExecutor) driver.get()).executeScript("arguments[0].scrollIntoView(true);", driver.get().findElement(addToCartBtn));
+//
+//        driver.get().findElement(addToCartBtn).click();
 
         return this;
     }
 
     //moataz
+    @Step("CheckThatHandToolsPageIsLoadedSuccessfully")
     public HandToolPage CheckThatHandToolsPageIsLoadedSuccessfully(){
         driver.element().click(Categories);
         driver.element().click(HandTools);
         return new HandToolPage(driver);
     }
-
+    @Step("CheckThatPowerToolsPageIsLoadedSuccessfully")
     public PowerToolPage CheckThatPowerToolsPageIsLoadedSuccessfully(){
         driver.element().click(Categories);
         driver.element().click(PowerTools);
         return new PowerToolPage(driver);
     }
+    @Step("CheckThatOtherToolsPageIsLoadedSuccessfully")
     public OtherPage CheckThatOtherToolsPageIsLoadedSuccessfully(){
         driver.element().click(Categories);
         driver.element().click(Other);
         return new OtherPage(driver);
     }
+    @Step("CheckThatSpecialToolsPageIsLoadedSuccessfully")
     public SpecialToolPage CheckThatSpecialToolsPageIsLoadedSuccessfully(){
         driver.element().click(Categories);
         driver.element().click(SpecialTools);
         return new SpecialToolPage(driver);
     }
+    @Step("CheckThatRentalsToolsPageIsLoadedSuccessfully")
     public RentalsPage CheckThatRentalsToolsPageIsLoadedSuccessfully(){
         driver.element().click(Categories);
         driver.element().click(Rentals);
         return new RentalsPage(driver);
     }
+    @Step("clickOnContactLink")
     public ContactPage clickOnContactLink(){
         driver.element().click(ContactLink);
         return new ContactPage(driver);
     }
     //Asmaa
+    @Step("verifyAllLinksAreWorking")
     public HomePage verifyAllLinksAreWorking() {
         List<WebElement> allLinks = driver.browser().findElements(By.tagName("a"));
 
@@ -169,14 +188,14 @@ public class HomePage {
 //                    connection.connect();
 //
 //                    int responseCode = connection.getResponseCode();
-//                    Assert.assertTrue(responseCode < 400, " Broken link found: " + url + " (code: " + responseCode + ")");
+//                    Assert.assertTrue(responseCode < 400, "❌ Broken link found: " + url + " (code: " + responseCode + ")");
 //                } catch (Exception e) {
-//                    Assert.fail(" Exception while checking link: " + url + " → " + e.getMessage());
+//                    Assert.fail("⚠️ Exception while checking link: " + url + " → " + e.getMessage());
 //                }
 //            }
 //        }
 //
-//        System.out.println(" All links are valid.");
+//        System.out.println("✅ All links are valid.");
 //        return this;
 //
 //    }

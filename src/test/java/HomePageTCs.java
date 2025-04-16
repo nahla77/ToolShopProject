@@ -6,25 +6,24 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import Pages.HomePage;
+import utilities.PropertiesManager;
 
 public class HomePageTCs {
 
     public ThreadLocal<Driver> driver;
+    private HomePage homePage;
 
     @BeforeMethod
-    @Parameters(value = {"browserName"})
-    public void setup(@Optional("CHROME") String browserName) {
+    public void setup() {
         driver = new ThreadLocal<>();
-        driver.set(new Driver(browserName));
-        driver.get().browser().navigateToURL("https://practicesoftwaretesting.com/");
+        PropertiesManager.initializeProperties();
+        driver.set(new Driver());
     }
 
     @Test
     public void testAllLinksOnHomePage() {
 
-        HomePage homePage = new HomePage(driver.get());
-
-        homePage.verifyAllLinksAreWorking();
+         new HomePage(driver.get()).verifyAllLinksAreWorking();
     }
 
 

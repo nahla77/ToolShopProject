@@ -1,16 +1,17 @@
 import DriverFactory.Driver;
 import Pages.PaginationPage;
 import org.testng.annotations.*;
+import utilities.PropertiesManager;
 
 public class PaginationPageTCs {
     public ThreadLocal<Driver> driver;
+    private PaginationPage paginationPage;
 
     @BeforeMethod
-    @Parameters(value = {"browserName"})
-    public void setup(@Optional("CHROME") String browserName) {
+    public void setup() {
         driver = new ThreadLocal<>();
-        driver.set(new Driver(browserName));
-        driver.get().browser().navigateToURL("https://practicesoftwaretesting.com/");
+        PropertiesManager.initializeProperties();
+        driver.set(new Driver());
     }
 
     @Test(priority = 1)

@@ -1,6 +1,7 @@
 package Pages;
 
 import DriverFactory.Driver;
+import io.qameta.allure.Step;
 import org.testng.Assert;
 
 public class SpecialToolPage {
@@ -12,6 +13,7 @@ public class SpecialToolPage {
 
     /****************************************Assertion*******************************************/
 
+    @Step("CheckThatUrlOfSpecialToolsPageIsCorrect")
     public SpecialToolPage CheckThatUrlOfSpecialToolsPageIsCorrect(){
 
         String url2 =driver.browser().getCurrentURL();

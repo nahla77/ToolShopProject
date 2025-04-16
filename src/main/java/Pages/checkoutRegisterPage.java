@@ -1,6 +1,7 @@
 package Pages;
 
 import DriverFactory.Driver;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,6 +33,7 @@ public class checkoutRegisterPage {
         this.wait = new WebDriverWait(driver.get(), Duration.ofSeconds(20));
     }
     /*****************************Actions********************/
+    @Step("fillIncheckoutRegisterPage")
     public checkoutRegisterPage fillIncheckoutRegisterPage() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(firstNameField)).sendKeys("souad");
         driver.get().findElement(lastNameField).sendKeys("a");
@@ -45,32 +47,21 @@ public class checkoutRegisterPage {
 
         driver.get().findElement(stateField).sendKeys("Alex");
         driver.get().findElement(phoneField).sendKeys("014238965");
-        driver.get().findElement(emailAddressField).sendKeys("souad1515@gmail.com");
+        String email = "test" + System.currentTimeMillis() + "@example.com";
+        TestData.registeredEmail = email;
+        driver.get().findElement(emailAddressField).sendKeys(email);
+
+        //driver.get().findElement(emailAddressField).sendKeys("souad1211@gmail.com");
         driver.get().findElement(passwordField).sendKeys("Sa-901234");
         return this;
     }
+    @Step("clickOnRegisterClickButton")
     public checkoutLoginPage clickOnRegisterClickButton() {
-        WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(20));
+        WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(registerClickButton));
+        driver.element().click(registerClickButton);
 
-        // انتظر اختفاء الرسائل أو العناصر اللي ممكن تغطي على الزر
-        try {
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(
-                    By.xpath("//div[contains(@class,'toast-message') or contains(@class,'overlay')]")));
-        } catch (Exception e) {
-            System.out.println("لم يظهر Overlay أو Toast.");
-        }
 
-        // انتظار الزر يكون قابل للضغط
-        WebElement registerBtn = wait.until(ExpectedConditions.elementToBeClickable(registerClickButton));
-
-        // Scroll للزر لو مش ظاهر على الشاشة
-        ((org.openqa.selenium.JavascriptExecutor) driver.get())
-                .executeScript("arguments[0].scrollIntoView(true);", registerBtn);
-
-        // الضغط
-        registerBtn.click();
-
-        System.out.println(" تم الضغط على زر التسجيل بنجاح");
 
         return new checkoutLoginPage(driver);
     }

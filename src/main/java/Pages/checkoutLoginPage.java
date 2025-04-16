@@ -1,6 +1,7 @@
 package Pages;
 
 import DriverFactory.Driver;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,6 +24,8 @@ public class checkoutLoginPage {
 
     }
     /*****************************ASSERTIONS*******************/
+
+    @Step("CheckThatLoginStringHeaderShouldBeDisplayed")
     public checkoutLoginPage CheckThatLoginStringHeaderShouldBeDisplayed() {
         Assert.assertTrue(
                 new WebDriverWait(driver.get(), Duration.ofSeconds(10))
@@ -35,17 +38,22 @@ public class checkoutLoginPage {
 
 
     /*****************************Actions********************/
+    @Step("fillInCheckoutLoginPage")
     public checkoutLoginPage fillInCheckoutLoginPage() {
-        driver.get().findElement(EmailAddressField).sendKeys("souad1515@gmail.com");
+        driver.get().findElement(EmailAddressField).sendKeys(TestData.registeredEmail);
+
+
         driver.get().findElement(PasswordField).sendKeys("Sa-901234");
 
         return this;
     }
+    @Step("clickOnLoginButton")
     public checkoutLoginPage clickOnLoginButton()
     {
         driver.element().click(LoginButton);
         return new checkoutLoginPage(driver);
     }
+    @Step("clickOnHomeIcon")
     public HomePage clickOnHomeIcon()
     {
         driver.element().click(HomeIcon);

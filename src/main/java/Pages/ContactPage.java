@@ -1,6 +1,7 @@
 package Pages;
 
 import DriverFactory.Driver;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -36,14 +37,14 @@ public class ContactPage {
     By attachmentAlert = By.id("attachment_alert");
 
     /****************************************Assertions*******************************************/
-
+    @Step("CheckThatUrlOfContactPageIsCorrect")
     public ContactPage CheckThatUrlOfContactPageIsCorrect() {
 
         String url2 = driver.browser().getCurrentURL();
         Assert.assertEquals(url2, "https://practicesoftwaretesting.com/contact");
         return this;
     }
-
+    @Step("checkThatContactPageShouldBeLoadedSuccessfully")
     public ContactPage checkThatContactPageShouldBeLoadedSuccessfully() {
         System.out.println("Current URL: " + driver.browser().getCurrentURL());
         WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(30));
@@ -54,6 +55,7 @@ public class ContactPage {
         
         return this;
     }
+    @Step("checkThatThanksMessageIsDisplayedSuccessfully")
     public ContactPage checkThatThanksMessageIsDisplayedSuccessfully(){
         WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(30));
         WebElement successMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(ThanksMessage));
@@ -61,6 +63,7 @@ public class ContactPage {
 
         return this;
     }
+    @Step("verifyErrorMessage")
     public ContactPage verifyErrorMessage() {
         Assert.assertTrue(driver.element().isDisplayed(firstNameAlert), "Error message not displayed");
         Assert.assertTrue(driver.element().isDisplayed(lastNameAlert), "Error message not displayed");
@@ -72,6 +75,7 @@ public class ContactPage {
     }
 
     /****************************************Actions*******************************************/
+    @Step("fillInContactPageForm")
     public ContactPage fillInContactPageForm() {
         driver.get().findElement(firstName).sendKeys("Layan");
         driver.get().findElement(lastName).sendKeys("Aser");
@@ -85,6 +89,7 @@ public class ContactPage {
         driver.get().findElement(attachment).sendKeys(filePath);
         return this;
     }
+    @Step("fillInContactFormWithInValidData")
     public ContactPage fillInContactFormWithInValidData(){
         driver.get().findElement(firstName).sendKeys("");
         driver.get().findElement(lastName).sendKeys("");
@@ -95,6 +100,7 @@ public class ContactPage {
         return this;
 
     }
+    @Step("clickOnsendButton")
     public ContactPage clickOnsendButton() {
         //driver.element().scrollToElement(createAccountButton);
         driver.element().click(sendButton);

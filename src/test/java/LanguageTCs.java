@@ -3,61 +3,61 @@ import Pages.FiltersPage;
 import Pages.HomePage;
 import Pages.LanguageTest;
 import org.testng.annotations.*;
+import utilities.PropertiesManager;
 
 import static Pages.LanguageTest.*;
 
 public class LanguageTCs {
     public ThreadLocal<Driver> driver;
-    LanguageTest languageTest;
+     private LanguageTest languageTest;
 
     @BeforeMethod
-    @Parameters(value = {"browserName"})
-    public void setup(@Optional("CHROME") String browserName) {
+    public void setup() {
         driver = new ThreadLocal<>();
-        driver.set(new Driver(browserName));
-        driver.get().browser().navigateToURL("https://practicesoftwaretesting.com/");
-        languageTest = new LanguageTest(driver.get());
+        PropertiesManager.initializeProperties();
+        driver.set(new Driver());
     }
+
     @Test
     public void testSwitchToGerman(){
-        languageTest.clickLanguageDropdown()
+        new LanguageTest(driver.get()).clickLanguageDropdown()
                 .selectLanguage(DN_options)
                 .assertSortLabelTextIs("Sortieren");
     }
     @Test
     public void testSwitchToEnglish(){
-        languageTest.clickLanguageDropdown()
+        new LanguageTest(driver.get()).clickLanguageDropdown()
                 .selectLanguage(EN_options)
                 .assertSortLabelTextIs("Sort");
     }
     @Test
     public void testSwitchToSpanish(){
-        languageTest.clickLanguageDropdown()
+        new LanguageTest(driver.get()).clickLanguageDropdown()
                 .selectLanguage(ES_options)
                 .assertSortLabelTextIs("Ordenar");
     }
     @Test
     public void testSwitchToFrench(){
-        languageTest.clickLanguageDropdown()
+        new LanguageTest(driver.get()).clickLanguageDropdown()
                 .selectLanguage(FR_options)
                 .assertSortLabelTextIs("Trier");
     }
     @Test
     public void testSwitchToDutch() {
-        languageTest
+        new LanguageTest(driver.get())
                 .clickLanguageDropdown()
                 .selectLanguage(NL_options)
                 .assertSortLabelTextIs("Sorteren");
     }
     @Test
     public void testSwitchToTurkish(){
-        languageTest.clickLanguageDropdown()
+        new LanguageTest(driver.get()).clickLanguageDropdown()
                 .selectLanguage(TR_options)
                 .assertSortLabelTextIs("Sırala");
     }
     @Test
     public void testFrenchLanguagePersistsAfterRefresh() {
-        languageTest
+        new LanguageTest(driver.get())
                 .clickLanguageDropdown()
                 .selectLanguage(FR_options)
                 .verifyLanguagePersistsAfterRefresh("Trier");

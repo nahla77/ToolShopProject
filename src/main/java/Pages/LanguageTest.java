@@ -1,6 +1,7 @@
 package Pages;
 
 import DriverFactory.Driver;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -29,29 +30,42 @@ public class LanguageTest {
 
 
     /****************************************Actions*******************************************/
+    @Step("clickLanguageDropdown")
 
     public LanguageTest clickLanguageDropdown(){
     driver.element().click(languageDropdown);
     return this;
 }
-    public LanguageTest selectLanguage(By languageOption) {
+@Step("selectLanguage")
+ public LanguageTest selectLanguage(By languageOption) {
         driver.element().click(languageOption);
         return this;
     }
 
 
 /****************************************Assertions*******************************************/
+@Step("getSortText")
 public String getSortText() {
     WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(10));
     WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(SortText));
     return element.getText();// بترجع النص الموجود
 }
 //Assertion on word "sort"
+@Step("assertSortLabelTextIs")
 public LanguageTest assertSortLabelTextIs(String expectedText) {
-        String actual = getSortText(); // بيجيب النص من h4.grid-title
-        Assert.assertEquals(actual.trim(), expectedText, " Sort label text is not as expected");
-        return this;
-    }
+    WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(10));
+
+    // استنى لحد ما النص يتغير للي إحنا عايزينه
+    boolean textChanged = wait.until(ExpectedConditions.textToBePresentInElementLocated(
+            By.cssSelector("h4.grid-title"), expectedText));
+
+    Assert.assertTrue(textChanged, " Text did not update to expected language");
+
+    String actual = getSortText();
+    Assert.assertEquals(actual.trim(), expectedText, " Sort label text is not as expected");
+    return this;
+}
+    @Step("verifyLanguagePersistsAfterRefresh")
 public LanguageTest verifyLanguagePersistsAfterRefresh(String expectedText) {
         WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(SortText));

@@ -1,6 +1,7 @@
 package Pages;
 
 import DriverFactory.Driver;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
@@ -18,6 +19,7 @@ public class ConfirmationPaymentPage {
 
     }
     /*****************************ASSERTIONS*******************/
+    @Step("CheckThatPaymentSuccessfulMsgShouldBeDisplayed")
     public ConfirmationPaymentPage CheckThatPaymentSuccessfulMsgShouldBeDisplayed()
     {
         Assert.assertEquals(driver.element()
@@ -25,12 +27,14 @@ public class ConfirmationPaymentPage {
         return this;
     }
     /*****************************Actions********************/
+    @Step("fillInPaymentField")
     public ConfirmationPaymentPage fillInPaymentField() {
         Select select = new Select(driver.get().findElement(paymentField));
         select.selectByValue("cash-on-delivery");
 
         return this;
     }
+    @Step("clickOnConfirmButton")
     public ConfirmationPaymentPage clickOnConfirmButton()
     {
         driver.element().click(confirmButton);

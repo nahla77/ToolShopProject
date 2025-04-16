@@ -1,6 +1,7 @@
 package Pages;
 
 import DriverFactory.Driver;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 
@@ -13,7 +14,7 @@ public class HandToolPage {
 
 
     /****************************************Assertion*******************************************/
-
+    @Step("CheckThatUrlOfHandToolsPageIsCorrect")
     public HandToolPage CheckThatUrlOfHandToolsPageIsCorrect(){
 
         String url2 =driver.browser().getCurrentURL();

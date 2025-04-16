@@ -1,6 +1,7 @@
 package Pages;
 
 import DriverFactory.Driver;
+import io.qameta.allure.Step;
 import org.testng.Assert;
 
 public class RentalsPage {
@@ -11,7 +12,7 @@ public class RentalsPage {
     }
 
     /****************************************Assertion*******************************************/
-
+    @Step("CheckThatUrlOfRentalsToolsPageIsCorrect")
     public RentalsPage CheckThatUrlOfRentalsToolsPageIsCorrect(){
 
         String url2 =driver.browser().getCurrentURL();

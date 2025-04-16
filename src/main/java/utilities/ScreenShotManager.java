@@ -12,17 +12,18 @@ import java.nio.file.StandardOpenOption;
 
 public class ScreenShotManager {
 
-    static String ScreenShotDirectoryPath = "./ScreenShot";
+    static String screenshotsDirectoryPath = "./screenshots";
 
-    public static void CaptureScreenShot(WebDriver driver, String ScreenShotName){
-        Path destination = Paths.get(ScreenShotDirectoryPath, ScreenShotName +".jpg");
+    public static String captureScreenshot(WebDriver driver, String screenshotName) {
+        Path destination = Paths.get(screenshotsDirectoryPath, screenshotName + ".jpg");
 
+        byte[] byteArray = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
 
-        byte[] byteArray =((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
         try {
-            Files.write(destination, byteArray , StandardOpenOption.CREATE);
-        } catch (IOException e){
-            System.out.println("Unable to save screenshot");
+            Files.write(destination, byteArray, StandardOpenOption.CREATE);
+        } catch (IOException e) {
+            System.out.println("Unable to Save screenshot");
         }
+        return String.valueOf(destination);
     }
 }
