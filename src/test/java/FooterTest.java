@@ -3,7 +3,7 @@ import Pages.FooterSection;
 import org.testng.annotations.*;
 import utilities.PropertiesManager;
 
-public class FooterTCs {
+public class FooterTest {
     public ThreadLocal<Driver> driver;
     private FooterSection footerSection;
 
