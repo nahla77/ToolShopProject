@@ -49,10 +49,10 @@ public class ShoppingCart {
             WebElement stepsElement = wait.until(ExpectedConditions.presenceOfElementLocated(
                     By.xpath("//ul[@class='steps-4 steps-indicator']")));
 
-            Assert.assertTrue(stepsElement.isDisplayed(), "❌ عنصر الخطوات غير ظاهر");
-            System.out.println("✅ عنصر الخطوات ظاهر بنجاح");
+            Assert.assertTrue(stepsElement.isDisplayed(), " عنصر الخطوات غير ظاهر");
+            System.out.println(" عنصر الخطوات ظاهر بنجاح");
         } catch (Exception e) {
-            System.out.println("❌ عنصر الخطوات غير موجود أصلاً!");
+            System.out.println(" عنصر الخطوات غير موجود أصلاً!");
             throw e; // إعادة رمي الاستثناء عشان التست يفشل فعلاً لو العنصر مش موجود
         }
 
