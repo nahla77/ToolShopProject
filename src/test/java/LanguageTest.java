@@ -1,15 +1,13 @@
 import DriverFactory.Driver;
-import Pages.FiltersPage;
-import Pages.HomePage;
-import Pages.LanguageTest;
+import Pages.Languagetest;
 import org.testng.annotations.*;
 import utilities.PropertiesManager;
 
-import static Pages.LanguageTest.*;
+import static Pages.Languagetest.*;
 
 public class LanguageTest {
     public ThreadLocal<Driver> driver;
-     private LanguageTest languageTest;
+    private LanguageTest languageTest;
 
     @BeforeMethod
     public void setup() {
