@@ -3,7 +3,7 @@ import Pages.HomePage;
 import org.testng.annotations.*;
 import utilities.PropertiesManager;
 
-public class CategoriesTCs {
+public class CategoriesTest {
 
     public ThreadLocal<Driver> driver;
     private HomePage homePage;
