@@ -32,13 +32,13 @@ public class PaginationPage {
         WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(10));
         WebElement current = wait.until(ExpectedConditions.visibilityOfElementLocated(activePage));
         String actualNumber = current.getText();
-        Assert.assertEquals(actualNumber, expectedNumber, "❌ Page " + expectedNumber + " is not active as expected!");
+        Assert.assertEquals(actualNumber, expectedNumber, " Page " + expectedNumber + " is not active as expected!");
         return this;
     }
     public PaginationPage checkThatProductsAreVisible() {
         WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(10));
         int count = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(productCard)).size();
-        Assert.assertTrue(count > 0, "❌ No products found on the current page.");
+        Assert.assertTrue(count > 0, " No products found on the current page.");
         return this;
     }
 
