@@ -7,7 +7,7 @@ import utilities.PropertiesManager;
 
 import java.time.Duration;
 
-public class FullShoppingCartTC {
+public class FullShoppingCartTest {
     public ThreadLocal<Driver> driver;
 
     @BeforeMethod
