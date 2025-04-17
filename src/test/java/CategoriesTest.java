@@ -19,14 +19,14 @@ public class CategoriesTest {
     public void handTools() {
         new HomePage(driver.get()).CheckThatURLofHomePageIsCorrect()
                 .CheckThatHandToolsPageIsLoadedSuccessfully()
-                .CheckThatUrlOfHandToolsPageIsCorrect();
+                .CheckThatUrlOfHandToolsPageIsCorrect().CheckThatTextOfHandToolsIsFound();
     }
 
     @Test(priority = 2)
     public void powerTools() {
         new HomePage(driver.get()).CheckThatURLofHomePageIsCorrect()
                 .CheckThatPowerToolsPageIsLoadedSuccessfully()
-                .CheckThatUrlOfPowerToolsPageIsCorrect();
+                .CheckThatUrlOfPowerToolsPageIsCorrect().CheckThatTextOfPowerToolsIsFound();
 
     }
 
@@ -35,14 +35,14 @@ public class CategoriesTest {
     public void other() {
         new HomePage(driver.get()).CheckThatURLofHomePageIsCorrect()
                 .CheckThatOtherToolsPageIsLoadedSuccessfully()
-                .CheckThatUrlOfOtherToolsPageIsCorrect();
+                .CheckThatUrlOfOtherToolsPageIsCorrect().CheckThatTextOfOtherToolsIsFound();
     }
 
     @Test(priority = 4)
     public void specialTools() {
         new HomePage(driver.get()).CheckThatURLofHomePageIsCorrect()
                 .CheckThatSpecialToolsPageIsLoadedSuccessfully()
-                .CheckThatUrlOfSpecialToolsPageIsCorrect();;
+                .CheckThatUrlOfSpecialToolsPageIsCorrect().CheckThatTextOfSpecialToolsIsFound();
 
     }
 
@@ -50,7 +50,7 @@ public class CategoriesTest {
     public void rentals() {
         new HomePage(driver.get()).CheckThatURLofHomePageIsCorrect()
                 .CheckThatRentalsToolsPageIsLoadedSuccessfully()
-                .CheckThatUrlOfRentalsToolsPageIsCorrect();
+                .CheckThatUrlOfRentalsToolsPageIsCorrect().CheckThatTextOfRentalToolsIsFound();
 
     }
 

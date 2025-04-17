@@ -1,5 +1,4 @@
 import DriverFactory.Driver;
-import Pages.ContactPage;
 import Pages.HomePage;
 import org.testng.annotations.*;
 import utilities.PropertiesManager;

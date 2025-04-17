@@ -1,7 +1,5 @@
-import BrowserActions.browserActions;
 import DriverFactory.Driver;
 import Pages.FiltersPage;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 import utilities.PropertiesManager;
 
